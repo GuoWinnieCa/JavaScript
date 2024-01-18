@@ -62,28 +62,44 @@
             return x;
         }
         document.write("本期預測號碼: <br>")
+        // 
+        document.write(Date() + "<hr>")
         let data = [];
         for (j = 0; j < 5; j++) {
             let number = [];
-            for (let i = 0; i < 6; i++) {
+            while (true) {
                 let r = getRandomInt(1, 49);
-
-                console.log(r);
-                // document.write("<h3>第" + (i + 1) + "個號碼:" + r + "</h3>");
-                // document.write(`<h3>第${i + 1}個號碼:${r}</h3>`);
-                number.push(r)
+                if (!number.includes(r)) {
+                    // console.log(r);
+                    // document.write("<h3>第" + (i + 1) + "個號碼:" + r + "</h3>");
+                    // document.write(`<h3>第${i + 1}個號碼:${r}</h3>`);
+                    number.push(r);
+                }
+                if (number.length == 6) {
+                    break;
+                }
             }
-            console.log(number);
-            document.write(`<h3>第${j + 1}組號碼:${number}</h3>`);
+            // console.log(number);
+            // document.write(`<h3>第${j + 1}組號碼:${number}</h3>`);
+            // 排序
+            number.sort(compare)
+
             data.push(number);
         }
-
+        // 排序方法 升序a-b, 降序 b-a
+        function compare(a, b) {
+            return a - b;
+        }
         console.log(data);
 
+        for (let i = 0; i < data.length; i++) {
+            result = data[i].join(",")
+            console.log(result);
+            document.write(`<h3>第${i + 1}組號碼:${result}</h3><hr>`)
+        }
 
 
 
-        console.log(data);
 
 
 
